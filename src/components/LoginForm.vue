@@ -193,14 +193,6 @@ const socialLogin = (platform) => {
   transform: translateY(1px);
 }
 
-.ripple {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.6);
-  transform: scale(0);
-  animation: ripple 0.6s linear;
-}
-
 @keyframes ripple {
   to {
     transform: scale(2.5);
@@ -262,15 +254,8 @@ const socialLogin = (platform) => {
   transform: translateY(-5px);
 }
 
-.social-btn.wechat {
-  background: linear-gradient(45deg, #2aae67, #1e9e5a);
-}
-
 .social-btn.qq {
   background: linear-gradient(45deg, #12b7f5, #0a9bd9);
 }
 
-.social-btn.weibo {
-  background: linear-gradient(45deg, #e6162d, #cc1428);
-}
 </style>
