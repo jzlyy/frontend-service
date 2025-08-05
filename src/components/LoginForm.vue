@@ -30,15 +30,10 @@
       还没有账号? <a href="#">立即注册</a>
     </div>
 
+    <!-- 仅保留QQ登录 -->
     <div class="social-login">
-      <div class="social-btn wechat" @click="socialLogin('wechat')">
-        <i class="fab fa-weixin"></i>
-      </div>
       <div class="social-btn qq" @click="socialLogin('qq')">
         <i class="fab fa-qq"></i>
-      </div>
-      <div class="social-btn weibo" @click="socialLogin('weibo')">
-        <i class="fab fa-weibo"></i>
       </div>
     </div>
   </form>
@@ -86,9 +81,7 @@ const showSuccessMessage = () => {
 
 const socialLogin = (platform) => {
   const platforms = {
-    'wechat': '微信',
-    'qq': 'QQ',
-    'weibo': '微博'
+    'qq': 'QQ'
   }
   alert(`正在通过${platforms[platform] || platform}登录...`)
 }
