@@ -3,6 +3,7 @@
 </template>
 
 <script setup>
+/* global particlesJS */ // 新增：声明全局函数
 import { onMounted } from 'vue'
 
 onMounted(() => {
@@ -41,7 +42,7 @@ function initParticles() {
     interactivity: {
       detect_on: 'canvas',
       events: {
-        onhover: { enable: true, mode: 'grab' },
+        onHover: { enable: true, mode: 'grab' },
         onclick: { enable: true, mode: 'push' },
         resize: true
       }
