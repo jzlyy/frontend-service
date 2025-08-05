@@ -5,7 +5,7 @@
       <div class="logo-text">CampusLife</div>
     </div>
 
-    <div class="title">大学生一站式服务分析</div>
+    <div class="title">大学生一站式服务分析平台</div>
 
     <div class="success-badge">
       <h2>SUCCESS</h2>
