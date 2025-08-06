@@ -76,7 +76,7 @@ const createRipple = (event) => {
 }
 
 const showSuccessMessage = () => {
-  alert(`登录成功！\n欢迎回来，${username.value}！\n将为您提供个性化校园服务`)
+  alert(`登录成功！\n欢迎回来，${username.value}！\n将为您提供个性化校园服务分析`)
 }
 
 const socialLogin = (platform) => {
