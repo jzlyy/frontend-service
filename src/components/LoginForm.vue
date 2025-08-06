@@ -27,7 +27,7 @@
     <button type="submit" class="login-btn" @click="createRipple">登 录</button>
 
     <div class="register-link">
-      还没有账号? <a href="#">立即注册</a>
+      还没有账号? <router-link to="/register">立即注册</router-link>
     </div>
 
     <!-- 仅保留QQ登录 -->
