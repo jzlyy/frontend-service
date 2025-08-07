@@ -37,7 +37,7 @@ const features = ref([
 <style scoped>
 .left-panel {
   flex: 1;
-  padding: 40px;
+  padding: 60px 50px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -69,9 +69,9 @@ const features = ref([
 }
 
 .title {
-  font-size: 36px;
+  font-size: 41px;
   font-weight: 800;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   text-align: center;
   letter-spacing: 1px;
   background: linear-gradient(45deg, #ffd43b, #ffa94d);
@@ -88,10 +88,10 @@ const features = ref([
 
 .success-badge {
   background: rgba(255, 255, 255, 0.1);
-  padding: 20px;
+  padding: 23px;
   border-radius: 15px;
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
   backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
@@ -104,7 +104,7 @@ const features = ref([
 }
 
 .success-badge h2 {
-  font-size: 48px;
+  font-size: 54px;
   font-weight: 800;
   letter-spacing: 3px;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
