@@ -39,26 +39,18 @@
 
     <!-- 密码 -->
     <div class="form-group">
-      <label for="reg-password">密码</label>
+      <label for="reg-password">密码(要求大写字母、小写字母、数字和特殊字符中的三种)</label>
       <div class="input-with-icon">
         <i class="fas fa-lock"></i>
         <input
             type="password"
             id="reg-password"
             class="form-control"
-            placeholder="请设置密码（至少6位）"
+            placeholder="请设置密码(至少8位)"
             v-model="password"
             required
             @input="checkPasswordStrength"
         >
-        <!-- 密码可见性切换 -->
-        <button
-            type="button"
-            class="toggle-visibility"
-            @click="togglePasswordVisibility('password')"
-        >
-          <i :class="passwordVisible ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
-        </button>
       </div>
       <!-- 密码强度提示 -->
       <div class="password-strength" v-if="password">
@@ -84,13 +76,6 @@
             required
             @blur="validateConfirmPassword"
         >
-        <button
-            type="button"
-            class="toggle-visibility"
-            @click="togglePasswordVisibility('confirm')"
-        >
-          <i :class="confirmVisible ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
-        </button>
       </div>
       <p class="error-message" v-if="confirmError">{{ confirmError }}</p>
     </div>
@@ -124,9 +109,6 @@ const email = ref('')
 const password = ref('')
 const confirmPassword = ref('')
 const isLoading = ref(false)
-// 密码可见性
-const passwordVisible = ref(false)
-const confirmVisible = ref(false)
 // 错误提示
 const usernameError = ref('')
 const emailError = ref('')
@@ -155,23 +137,40 @@ const validateEmail = () => {
 
 // 检查密码强度
 const checkPasswordStrength = () => {
-  if (password.value.length < 6) {
-    passwordStrength.value = { width: '30%', color: '#e74c3c', text: '弱：至少6位字符' }
-  } else if (
-      /[a-z]/.test(password.value) &&  // 替换 match → test
-      /[0-9]/.test(password.value)
-  ) {
-    passwordStrength.value = { width: '70%', color: '#f39c12', text: '中：包含字母和数字' }
-  } else if (
-      /[a-z]/.test(password.value) &&
-      /[0-9]/.test(password.value) &&
-      /[^a-zA-Z0-9]/.test(password.value)  // 替换 match → test
-  ) {
-    passwordStrength.value = { width: '100%', color: '#2ecc71', text: '强：包含字母、数字和特殊字符' }
+  // 统一字母正则（包含大小写）
+  const hasLetter = /[a-zA-Z]/.test(password.value);
+  const hasNumber = /[0-9]/.test(password.value);
+  const hasSpecial = /[^a-zA-Z0-9]/.test(password.value); // 非字母数字即为特殊字符
+
+  if (password.value.length < 8) { // 注意：原提示文本是"至少8位"，这里同步修正判断条件
+    passwordStrength.value = {
+      width: '30%',
+      color: '#e74c3c',
+      text: '弱：至少8位字符'
+    };
+  } else if (hasLetter && hasNumber && hasSpecial) {
+    // 强：同时包含字母（大小写均可）、数字、特殊字符
+    passwordStrength.value = {
+      width: '100%',
+      color: '#2ecc71',
+      text: '强：包含字母、数字和特殊字符'
+    };
+  } else if (hasLetter && hasNumber) {
+    // 中：包含字母和数字（无特殊字符）
+    passwordStrength.value = {
+      width: '70%',
+      color: '#f39c12',
+      text: '中：包含字母和数字'
+    };
   } else {
-    passwordStrength.value = { width: '50%', color: '#f39c12', text: '中：建议增加复杂度' }
+    // 其他情况（如仅字母、仅数字、字母+特殊字符等）
+    passwordStrength.value = {
+      width: '50%',
+      color: '#f39c12',
+      text: '中：建议增加复杂度'
+    };
   }
-}
+};
 
 // 验证确认密码
 const validateConfirmPassword = () => {
@@ -182,18 +181,7 @@ const validateConfirmPassword = () => {
   }
 }
 
-// 切换密码可见性
-const togglePasswordVisibility = (type) => {
-  if (type === 'password') {
-    passwordVisible.value = !passwordVisible.value
-    const input = document.getElementById('reg-password')
-    input.type = passwordVisible.value ? 'text' : 'password'
-  } else {
-    confirmVisible.value = !confirmVisible.value
-    const input = document.getElementById('reg-confirm')
-    input.type = confirmVisible.value ? 'text' : 'password'
-  }
-}
+
 
 // 注册逻辑
 const register = () => {
@@ -264,7 +252,7 @@ const createRipple = (event) => {
 
 .form-control {
   width: 100%;
-  padding: 16px 16px 16px 50px;
+  padding: 16px 18px 16px 50px;
   border: 2px solid #e0e6ed;
   border-radius: 12px;
   font-size: 16px;
@@ -285,23 +273,6 @@ const createRipple = (event) => {
   color: #3498db;
   left: 18px;
   transform: translateY(-50%) scale(1.1); /* 图标缩放 */
-}
-
-/* 密码可见性切换按钮 */
-.toggle-visibility {
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: transparent;
-  border: none;
-  color: #7f8c8d;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-
-.toggle-visibility:hover {
-  color: #3498db;
 }
 
 /* 错误提示样式 */
