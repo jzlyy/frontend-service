@@ -37,7 +37,7 @@ const features = ref([
 <style scoped>
 .left-panel {
   flex: 1;
-  padding: 60px 50px;
+  padding: 70px 60px;
   display: flex;
   flex-direction: column;
   position: relative;
