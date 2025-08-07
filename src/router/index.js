@@ -1,16 +1,38 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LoginPanel from '../components/LoginPanel.vue'
 import RegisterPanel from '../components/RegisterPanel.vue'
+import Dashboard from '../components/Dashboard.vue'
 
 const routes = [
     { path: '/', redirect: '/login' },
     { path: '/login', component: LoginPanel },
-    { path: '/register', component: RegisterPanel }
+    { path: '/register', component: RegisterPanel },
+    {
+        path: '/dashboard',
+        component: Dashboard,
+        meta: { requiresAuth: true }
+    }
 ]
 
 const router = createRouter({
     history: createWebHistory(),
     routes
+})
+
+// 添加路由守卫
+router.beforeEach((to, from, next) => {
+    const token = localStorage.getItem('token')
+
+    // 使用安全访问方式检查 requiresAuth
+    const requiresAuth = to.meta && to.meta.requiresAuth
+
+    if (requiresAuth && !token) {
+        next('/login')
+    } else if ((to.path === '/login' || to.path === '/register') && token) {
+        next('/dashboard')
+    } else {
+        next()
+    }
 })
 
 export default router
