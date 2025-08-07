@@ -16,16 +16,17 @@ import LoginForm from './LoginForm.vue'
 <style scoped>
 .right-panel {
   flex: 1;
-  padding: 50px 40px;
+  padding: 70px 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 0 20px 20px 0; /* 新增圆角，与注册页面呼应 */
 }
 
 .login-header {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
 }
 
 .login-header h2 {
