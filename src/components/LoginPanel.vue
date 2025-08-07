@@ -30,7 +30,7 @@ import LoginForm from './LoginForm.vue'
 }
 
 .login-header h2 {
-  font-size: 32px;
+  font-size: 36px;
   color: #2c3e50;
   margin-bottom: 10px;
   position: relative;
@@ -51,7 +51,7 @@ import LoginForm from './LoginForm.vue'
 
 .login-header p {
   color: #7f8c8d;
-  font-size: 16px;
+  font-size: 17px;
   margin-top: 20px;
 }
 </style>
