@@ -102,6 +102,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import api from '../services/api'
 
 const router = useRouter()
 const username = ref('')
@@ -184,7 +185,7 @@ const validateConfirmPassword = () => {
 
 
 // 注册逻辑
-const register = () => {
+const register = async () => {
   // 触发所有验证
   validateUsername()
   validateEmail()
@@ -196,12 +197,24 @@ const register = () => {
   }
 
   isLoading.value = true
-  // 模拟接口请求
-  setTimeout(() => {
+
+  try {
+    await api.register({
+      username: username.value,
+      email: email.value,
+      password: password.value
+    });
     alert(`注册成功！欢迎您，${username.value}`)
+    await router.push('/login')
+  } catch (error) {
+    if (error.response && error.response.status === 400) {
+      alert(error.response.data.message || '注册失败，请检查输入')
+    } else {
+      alert('注册失败，请稍后重试')
+    }
+  } finally {
     isLoading.value = false
-    router.push('/login')
-  }, 1500)
+  }
 }
 
 // 水波纹效果（复用登录按钮逻辑）
