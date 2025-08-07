@@ -24,7 +24,12 @@
       <a href="#" class="forgot-password">忘记密码?</a>
     </div>
 
-    <button type="submit" class="login-btn" @click="createRipple">登 录</button>
+    <div class="error-message" v-if="errorMessage">{{ errorMessage }}</div>
+
+    <button type="submit" class="login-btn" :disabled="isLoading">
+      <span v-if="!isLoading">登 录</span>
+      <span v-else><i class="fas fa-spinner fa-spin"></i> 登录中...</span>
+    </button>
 
     <div class="register-link">
       还没有账号? <router-link to="/register">立即注册</router-link>
@@ -41,19 +46,54 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import api from '../services/api'
 
+const router = useRouter()
 const username = ref('')
 const password = ref('')
 const remember = ref(false)
+const isLoading = ref(false)
+const errorMessage = ref('')
 
-const login = () => {
-  if (username.value && password.value) {
+const login = async () => {
+  isLoading.value = true
+  errorMessage.value = ''
+
+  try {
+    const response = await api.login(username.value, password.value)
+
+    // 存储Token
+    localStorage.setItem('token', response.data.token)
+
+    // 如果选择"记住我"，存储用户名
+    if (remember.value) {
+      localStorage.setItem('username', username.value)
+    } else {
+      localStorage.removeItem('username')
+    }
+
     showSuccessMessage()
-  } else {
-    alert('请输入用户名和密码')
+    await router.push('/dashboard') // 跳转到仪表盘页面
+  } catch (error) {
+    if (error.response && error.response.status === 401) {
+      errorMessage.value = '用户名或密码错误'
+    } else {
+      errorMessage.value = '登录失败，请稍后重试'
+    }
+  } finally {
+    isLoading.value = false
   }
 }
 
+// 从本地存储加载记住的用户名
+const savedUsername = localStorage.getItem('username')
+if (savedUsername) {
+  username.value = savedUsername
+  remember.value = true
+}
+
+// eslint-disable-next-line no-unused-vars
 const createRipple = (event) => {
   const button = event.target
   const ripple = document.createElement('span')
@@ -113,6 +153,13 @@ const socialLogin = (platform) => {
   color: #7f8c8d;
   font-size: 18px;
   transition: all 0.3s;
+}
+
+.error-message {
+  color: #e74c3c;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: 500;
 }
 
 .form-control {
