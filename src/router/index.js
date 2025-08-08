@@ -23,10 +23,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
     const token = localStorage.getItem('token')
 
-    // 使用安全访问方式检查 requiresAuth
-    const requiresAuth = to.meta && to.meta.requiresAuth
-
-    if (requiresAuth && !token) {
+    if (to.meta.requiresAuth && !token) {
         next('/login')
     } else if ((to.path === '/login' || to.path === '/register') && token) {
         next('/dashboard')
