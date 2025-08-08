@@ -199,11 +199,12 @@ const register = async () => {
   isLoading.value = true
 
   try {
-    await api.register({
+    const response = await api.register({
       username: username.value,
       email: email.value,
       password: password.value
-    });
+    })
+
     alert(`注册成功！欢迎您，${username.value}`)
     await router.push('/login')
   } catch (error) {
