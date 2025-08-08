@@ -37,20 +37,20 @@ const handleClick = () => {
 
 .feature-item:hover {
   transform: translateY(-8px) scale(1.03);
-  background: rgba(77, 171, 247, 0.2);
+  background: rgba(46, 204, 113, 0.2);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-  border-color: rgba(77, 171, 247, 0.4);
+  border-color: rgba(46, 204, 113, 0.4);
 }
 
 .feature-icon {
   font-size: 36px;
   margin-bottom: 15px;
-  color: #4dabf7;
+  color: #2ecc71;
   transition: all 0.4s;
 }
 
 .feature-item:hover .feature-icon {
-  color: #ffd43b;
+  color: #f1c40f;
   transform: rotateY(360deg);
 }
 
