@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../base
+patches:
+  - path: patch.yaml
+    target:
+      kind: Deployment
+      name: user-service
+images:
+  - name: crpi-5dxngct78yux2w9r.cn-chengdu.personal.cr.aliyuncs.com/product_123/user-service 
+    newTag: latest  # ArgoCD Image Updater 会自动更新这个值
