@@ -35,8 +35,12 @@
       还没有账号? <router-link to="/register">立即注册</router-link>
     </div>
 
-    <!-- 仅保留QQ登录 -->
+    <div class="divider">或使用第三方登录</div>
+
     <div class="social-login">
+      <div class="social-btn wechat" @click="socialLogin('wechat')">
+        <i class="fab fa-weixin"></i>
+      </div>
       <div class="social-btn qq" @click="socialLogin('qq')">
         <i class="fab fa-qq"></i>
       </div>
@@ -62,11 +66,8 @@ const login = async () => {
 
   try {
     const response = await api.login(username.value, password.value)
-
-    // 存储Token
     localStorage.setItem('token', response.data.token)
 
-    // 如果选择"记住我"，存储用户名
     if (remember.value) {
       localStorage.setItem('username', username.value)
     } else {
@@ -74,7 +75,7 @@ const login = async () => {
     }
 
     showSuccessMessage()
-    await router.push('/dashboard') // 跳转到仪表盘页面
+    await router.push('/dashboard')
   } catch (error) {
     if (error.response && error.response.status === 401) {
       errorMessage.value = '用户名或密码错误'
@@ -86,18 +87,19 @@ const login = async () => {
   }
 }
 
-// 从本地存储加载记住的用户名
 const savedUsername = localStorage.getItem('username')
 if (savedUsername) {
   username.value = savedUsername
   remember.value = true
 }
+
 const showSuccessMessage = () => {
-  alert(`登录成功！\n欢迎回来，${username.value}！\n将为您提供个性化校园服务分析`)
+  alert(`登录成功！\n欢迎来到校园二手交易平台，${username.value}！`)
 }
 
 const socialLogin = (platform) => {
   const platforms = {
+    'wechat': '微信',
     'qq': 'QQ'
   }
   alert(`正在通过${platforms[platform] || platform}登录...`)
@@ -150,14 +152,14 @@ const socialLogin = (platform) => {
 }
 
 .form-control:focus {
-  border-color: #3498db;
+  border-color: #2ecc71;
   outline: none;
-  box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.2);
+  box-shadow: 0 0 0 4px rgba(46, 204, 113, 0.2);
   padding-left: 55px;
 }
 
 .form-control:focus + i {
-  color: #3498db;
+  color: #2ecc71;
   left: 18px;
 }
 
@@ -195,7 +197,7 @@ const socialLogin = (platform) => {
 .login-btn {
   width: 100%;
   padding: 16px;
-  background: linear-gradient(90deg, #3498db, #2c3e50);
+  background: linear-gradient(90deg, #2ecc71, #27ae60);
   color: white;
   border: none;
   border-radius: 12px;
@@ -203,25 +205,18 @@ const socialLogin = (platform) => {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s;
-  box-shadow: 0 6px 15px rgba(52, 152, 219, 0.4);
+  box-shadow: 0 6px 15px rgba(46, 204, 113, 0.4);
   position: relative;
   overflow: hidden;
 }
 
 .login-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(52, 152, 219, 0.5);
+  box-shadow: 0 10px 20px rgba(46, 204, 113, 0.5);
 }
 
 .login-btn:active {
   transform: translateY(1px);
-}
-
-@keyframes ripple {
-  to {
-    transform: scale(2.5);
-    opacity: 0;
-  }
 }
 
 .register-link {
@@ -231,7 +226,7 @@ const socialLogin = (platform) => {
 }
 
 .register-link a {
-  color: #3498db;
+  color: #2ecc71;
   text-decoration: none;
   font-weight: 500;
   margin-left: 5px;
@@ -245,7 +240,7 @@ const socialLogin = (platform) => {
   left: 0;
   width: 0;
   height: 2px;
-  background: #3498db;
+  background: #2ecc71;
   transition: width 0.3s;
 }
 
@@ -253,22 +248,45 @@ const socialLogin = (platform) => {
   width: 100%;
 }
 
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #95a5a6;
+  margin: 25px 0;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #e0e6ed;
+}
+
+.divider::before {
+  margin-right: 15px;
+}
+
+.divider::after {
+  margin-left: 15px;
+}
+
 .social-login {
   display: flex;
   justify-content: center;
-  gap: 20px;
-  margin-top: 30px;
+  gap: 25px;
+  margin-top: 15px;
 }
 
 .social-btn {
-  width: 50px;
-  height: 50px;
+  width: 55px;
+  height: 55px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-  font-size: 20px;
+  font-size: 24px;
   cursor: pointer;
   transition: all 0.3s;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -276,10 +294,14 @@ const socialLogin = (platform) => {
 
 .social-btn:hover {
   transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.social-btn.wechat {
+  background: linear-gradient(45deg, #09bb07, #2add1c);
 }
 
 .social-btn.qq {
   background: linear-gradient(45deg, #12b7f5, #0a9bd9);
 }
-
 </style>
