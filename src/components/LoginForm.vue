@@ -93,7 +93,6 @@ if (savedUsername) {
   remember.value = true
 }
 
-// eslint-disable-next-line no-unused-vars
 const createRipple = (event) => {
   const button = event.target
   const ripple = document.createElement('span')
