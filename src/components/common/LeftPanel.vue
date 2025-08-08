@@ -1,14 +1,14 @@
 <template>
   <div class="left-panel">
     <div class="logo">
-      <i class="fas fa-graduation-cap logo-icon floating"></i>
-      <div class="logo-text">CampusLife</div>
+      <i class="fas fa-recycle logo-icon floating"></i>
+      <div class="logo-text">CampusTrade</div>
     </div>
 
-    <div class="title">大学生一站式服务分析平台</div>
+    <div class="title">校园二手交易平台</div>
 
-    <div class="success-badge">
-      <h2>SUCCESS</h2>
+    <div class="slogan">
+      <h2>闲置变现 · 绿色校园</h2>
     </div>
 
     <div class="features">
@@ -19,6 +19,17 @@
           :title="feature.title"
       />
     </div>
+
+    <div class="stats">
+      <div class="stat-item">
+        <div class="stat-value">1000+</div>
+        <div class="stat-label">活跃用户</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">10000+</div>
+        <div class="stat-label">成交商品</div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -27,21 +38,21 @@ import { ref } from 'vue'
 import FeatureItem from './FeatureItem.vue'
 
 const features = ref([
-  { icon: 'fas fa-book-open', title: '课堂分析' },
-  { icon: 'fas fa-briefcase', title: '就业分析' },
-  { icon: 'fas fa-heart', title: '恋爱分析' },
-  { icon: 'fas fa-users', title: '社交分析' }
+  { icon: 'fas fa-book', title: '教材交易' },
+  { icon: 'fas fa-laptop', title: '数码产品' },
+  { icon: 'fas fa-tshirt', title: '服饰箱包' },
+  { icon: 'fas fa-bicycle', title: '代步工具' }
 ])
 </script>
 
 <style scoped>
 .left-panel {
   flex: 1;
-  padding: 70px 60px;
+  padding: 60px 70px;
   display: flex;
   flex-direction: column;
   position: relative;
-  background: rgba(0, 30, 60, 0.7);
+  background: rgba(0, 40, 30, 0.85);
   color: white;
 }
 
@@ -54,18 +65,18 @@ const features = ref([
 .logo-icon {
   font-size: 32px;
   margin-right: 15px;
-  color: #4dabf7;
+  color: #2ecc71;
 }
 
 .logo-text {
   font-size: 24px;
   font-weight: 700;
   letter-spacing: 1px;
-  background: linear-gradient(45deg, #4dabf7, #da77f2);
+  background: linear-gradient(45deg, #2ecc71, #3498db);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 0 2px 10px rgba(77, 171, 247, 0.3);
+  text-shadow: 0 2px 10px rgba(46, 204, 113, 0.3);
 }
 
 .title {
@@ -74,7 +85,7 @@ const features = ref([
   margin-bottom: 40px;
   text-align: center;
   letter-spacing: 1px;
-  background: linear-gradient(45deg, #ffd43b, #ffa94d);
+  background: linear-gradient(45deg, #2ecc71, #f1c40f);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -82,11 +93,11 @@ const features = ref([
 }
 
 @keyframes titleGlow {
-  0% { text-shadow: 0 0 5px rgba(255, 212, 59, 0.5); }
-  100% { text-shadow: 0 0 20px rgba(255, 212, 59, 0.8), 0 0 30px rgba(255, 212, 59, 0.6); }
+  0% { text-shadow: 0 0 5px rgba(46, 204, 113, 0.5); }
+  100% { text-shadow: 0 0 20px rgba(46, 204, 113, 0.8), 0 0 30px rgba(46, 204, 113, 0.6); }
 }
 
-.success-badge {
+.slogan {
   background: rgba(255, 255, 255, 0.1);
   padding: 23px;
   border-radius: 15px;
@@ -98,27 +109,20 @@ const features = ref([
   transition: transform 0.4s, box-shadow 0.4s;
 }
 
-.success-badge:hover {
+.slogan:hover {
   transform: translateY(-5px);
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
 }
 
-.success-badge h2 {
-  font-size: 54px;
-  font-weight: 800;
-  letter-spacing: 3px;
+.slogan h2 {
+  font-size: 42px;
+  font-weight: 700;
+  letter-spacing: 2px;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  background: linear-gradient(45deg, #ff6b6b, #ffa8a8);
+  background: linear-gradient(45deg, #2ecc71, #f1c40f);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
 }
 
 .features {
@@ -128,7 +132,32 @@ const features = ref([
   margin-bottom: 40px;
 }
 
-/* 响应式设计 */
+.stats {
+  display: flex;
+  justify-content: space-around;
+  margin-top: auto;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  width: 45%;
+}
+
+.stat-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: #2ecc71;
+  margin-bottom: 5px;
+}
+
+.stat-label {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
 @media (max-width: 768px) {
   .left-panel {
     padding: 30px;
@@ -138,12 +167,11 @@ const features = ref([
     font-size: 28px;
   }
 
-  .success-badge h2 {
-    font-size: 36px;
+  .slogan h2 {
+    font-size: 28px;
   }
 }
 
-/* 浮动动画 */
 @keyframes float {
   0% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
