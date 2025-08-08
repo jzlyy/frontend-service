@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: user-service
+  namespace: backend
+data:
+  GIN_MODE: "release"
+  DB_HOST: "mysql-headless.mysql.svc.cluster.local"
+  DB_PORT: "3306"
+  DB_NAME: "ecommerce"
+  REDIS_HOST: "redis-headless.redis.svc.cluster.local"
+  REDIS_PORT: "6379"
+  RedisDB: "0"
+  RABBITMQ_HOST: "rabbitmq-headless.rabbitmq.svc.cluster.local"
+  RABBITMQ_PORT: "5672"
+  RABBITMQ_DELAY: "5000"
+  CACHE_TTL: "30"
+  NACOS_ADDRESSES: "nacos-headless.nacos.svc.cluster.local"
+  NACOS_NAMESPACE: "product"
+  NACOS_GROUP: "DEFAULT_GROUP"
+  NACOS_CLUSTER: "DEFAULT"
+  SERVICE_NAME: "user-service"
+  ServicePort: "8080"
+  FROM_EMAIL: "wwyxhqc1@jzlyy.xyz"
+  SENDGRID_EU_ACCOUNT: "false"
