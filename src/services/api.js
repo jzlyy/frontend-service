@@ -55,7 +55,6 @@ export default {
     },
 
     // 更新密码
-    /* eslint-disable no-unused-vars */
     updatePassword(oldPassword, newPassword) {
         return api.put('/password', {
             old_password: oldPassword,
@@ -67,7 +66,6 @@ export default {
     refreshToken(token) {
         return api.post('/refresh-token', { token })
     },
-    /* eslint-enable no-unused-vars */
 
     // 用户登出
     logout() {
