@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import LoginPanel from '../components/LoginPanel.vue'
-import RegisterPanel from '../components/RegisterPanel.vue'
-import Dashboard from '../components/Dashboard.vue'
+import LoginPanel from '../components/login/LoginPanel.vue'
+import RegisterPanel from '../components/register/RegisterPanel.vue'
+import Dashboard from '../components/common/Dashboard.vue'
 
 const routes = [
     { path: '/', redirect: '/login' },
