@@ -2,7 +2,7 @@
   <div class="right-panel">
     <div class="login-header">
       <h2>用户登录</h2>
-      <p>开启你的校园智能生活体验</p>
+      <p>让闲置物品重获新生</p>
     </div>
 
     <LoginForm />
@@ -21,7 +21,7 @@ import LoginForm from './LoginForm.vue'
   flex-direction: column;
   justify-content: center;
   background: rgba(255, 255, 255, 0.95);
-  border-radius: 0 20px 20px 0; /* 新增圆角，与注册页面呼应 */
+  border-radius: 0 20px 20px 0;
 }
 
 .login-header {
@@ -45,7 +45,7 @@ import LoginForm from './LoginForm.vue'
   transform: translateX(-50%);
   width: 60px;
   height: 4px;
-  background: linear-gradient(90deg, #3498db, #2c3e50);
+  background: linear-gradient(90deg, #2ecc71, #3498db);
   border-radius: 2px;
 }
 
