@@ -48,7 +48,7 @@ jobs:
           file: ./Dockerfile  # 确保存在Vue项目的Dockerfile
           push: ${{ github.event_name == 'push' }}  # 仅push事件时推送
           tags: |
-            ${{ secrets.ALIYUN_ACR_REGISTRY }}/${{ secrets.ALIYUN_ACR_NAMESPACE }}/vue-frontend:latest
-            ${{ secrets.ALIYUN_ACR_REGISTRY }}/${{ secrets.ALIYUN_ACR_NAMESPACE }}/vue-frontend:${{ github.sha }}
+            ${{ secrets.ALIYUN_ACR_REGISTRY }}/${{ secrets.ALIYUN_ACR_NAMESPACE }}/frontend-service:latest
+            ${{ secrets.ALIYUN_ACR_REGISTRY }}/${{ secrets.ALIYUN_ACR_NAMESPACE }}/frontend-service:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
