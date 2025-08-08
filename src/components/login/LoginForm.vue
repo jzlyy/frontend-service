@@ -92,28 +92,6 @@ if (savedUsername) {
   username.value = savedUsername
   remember.value = true
 }
-
-const createRipple = (event) => {
-  const button = event.target
-  const ripple = document.createElement('span')
-  ripple.classList.add('ripple')
-
-  const rect = button.getBoundingClientRect()
-  const size = Math.max(rect.width, rect.height)
-  const x = event.clientX - rect.left - size / 2
-  const y = event.clientY - rect.top - size / 2
-
-  ripple.style.width = ripple.style.height = size + 'px'
-  ripple.style.left = x + 'px'
-  ripple.style.top = y + 'px'
-
-  button.appendChild(ripple)
-
-  setTimeout(() => {
-    ripple.remove()
-  }, 600)
-}
-
 const showSuccessMessage = () => {
   alert(`登录成功！\n欢迎回来，${username.value}！\n将为您提供个性化校园服务分析`)
 }
