@@ -26,25 +26,25 @@ spec:
               name: frontend-service
           resources:
             requests:
-              cpu: 500m
+              cpu: 200m
               memory: 160Mi
             limits:
-              cpu: 800m
+              cpu: 400m
               memory: 360Mi
           livenessProbe:
             tcpSocket:
               port: 80
-            initalDelaySeconds: 30
+            initialDelaySeconds: 30
             periodSeconds: 15
             timeoutSeconds: 5
-            failureThshold: 3
-          readinressProbe:
+            failureThreshold: 3
+          readinessProbe:
             tcpSocket:
               port: 80
-            initalDelaySeconds: 15
+            initialDelaySeconds: 15
             periodSeconds: 10
-            successThshold: 2
-            failureThshold: 3
+            successThreshold: 2
+            failureThreshold: 3
       imagePullSecrets:
         - name: aliyun-acr-secret
 
