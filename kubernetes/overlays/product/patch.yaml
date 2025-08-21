@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user-service
-  namespace: backend
+  name: frontend-service
+  namespace: frontend
 spec:
-  replicas: 5  # 生产环境使用更多副本
+  replicas: 1  # 生产环境使用更多副本
   template:
     spec:
       containers:
-      - name: user-service
+      - name: frontend-service
         resources:
           limits:
-            cpu: "1000m"
-            memory: "1Gi"
+            cpu: "400m"
+            memory: "400Mi"
