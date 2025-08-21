@@ -19,11 +19,11 @@ spec:
         argocd-image-updater.argoproj.io/app.update-strategy: latest
     spec:
       containers:
-        - name: frontend-service
+        - name: frontend
           image: crpi-mc95723p4ndmj8y3.cn-chengdu.personal.cr.aliyuncs.com/product_123/frontend-service:latest
           ports:
             - containerPort: 80
-              name: frontend-service
+              name: frontend
           resources:
             requests:
               cpu: 200m
