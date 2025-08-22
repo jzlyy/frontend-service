@@ -6,7 +6,7 @@ patches:
   - path: patch.yaml
     target:
       kind: Deployment
-      name: frontend-service
+      name: frontend
 images:
   - name: crpi-mc95723p4ndmj8y3.cn-chengdu.personal.cr.aliyuncs.com/product_123/frontend-service
     newTag: latest  # ArgoCD Image Updater 会自动更新这个值
